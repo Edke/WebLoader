@@ -320,13 +320,17 @@ abstract class WebLoader extends \Nette\Application\Control {
 		// joined files
 		if ($this->joinFiles) {
 			$file = $this->generate($this->files);
-			echo $this->getElement($this->tempUri . "/" . $file);
+			if (!empty($this->files)) {
+				echo $this->getElement($this->tempUri . "/" . $file);
+			}
 
 		// separated files
 		} else {
-			foreach ($this->files as $file) {
-				$file = $this->generate(array($file));
-				echo $this->getElement($this->tempUri . "/" . $file);
+			if (!empty($this->files)) {
+				foreach ($this->files as $file) {
+					$file = $this->generate(array($file));
+					echo $this->getElement($this->tempUri . "/" . $file);
+				}
 			}
 		}
 
