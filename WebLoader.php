@@ -366,9 +366,11 @@ abstract class WebLoader extends \Nette\Application\Control {
 			$files = $this->files;
 		}
 
-		return $this->generatedFileNamePrefix . md5(
-			implode("|", $files) . "|" . $this->getLastModified($files)
-		) . $this->generatedFileNameSuffix;
+		$label = preg_replace('#(.+)\.[^.]+$#', '$1', basename($files[0]));
+		return $this->generatedFileNamePrefix .
+			\Nette\String::webalize($label) . '-' .
+			md5(implode("|", $files) . $this->getLastModified($files)) .
+			$this->generatedFileNameSuffix;
 	}
 
 
