@@ -2,7 +2,7 @@
 
 namespace WebLoader;
 
-use Nette\IO\SafeStream;
+use Nette\SafeStream;
 
 /**
  * Web loader
