@@ -26,6 +26,9 @@ class WebFiles {
 	if (\is_string($depends)) {
 	    $depends = array($depends);
 	}
+	elseif(\is_null($depends)) {
+	    $depends = array();
+	}
 
 	foreach ($depends as $dependent) {
 	    if (!\key_exists($dependent, $this->files)) {
