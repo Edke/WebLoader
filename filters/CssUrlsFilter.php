@@ -3,7 +3,7 @@
 namespace WebLoader;
 
 use Nette\Environment;
-use Nette\String;
+use Nette\StringUtils;
 
 /**
  * Absolutize urls in CSS
@@ -29,7 +29,7 @@ class CssUrlsFilter extends \Nette\Object {
 		$basePath = rtrim(Environment::getVariable("baseUri"), '/');
 
 		// inside document root
-		if (String::startsWith($cssFile, $docroot)) {
+		if (StringUtils::startsWith($cssFile, $docroot)) {
 			$path = $basePath . substr(dirname($cssFile), strlen($docroot)) . DIRECTORY_SEPARATOR . $url;
 
 		// outside document root

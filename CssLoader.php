@@ -2,8 +2,8 @@
 
 namespace WebLoader;
 
-use Nette\Web\Html;
-use Nette\IComponentContainer;
+use Nette\Utils\Html;
+use Nette\ComponentModel\IContainer;
 
 /**
  * Css loader
@@ -19,10 +19,10 @@ class CssLoader extends WebLoader {
 	
 	/**
 	 * Construct
-	 * @param IComponentContainer parent
+	 * @param IContainer parent
 	 * @param string name
 	 */
-	public function __construct(IComponentContainer $parent = null, $name = null) {
+	public function __construct(IContainer $parent = null, $name = null) {
 		parent::__construct($parent, $name);
 		$this->setGeneratedFileNamePrefix("cssloader-");
 		$this->setGeneratedFileNameSuffix(".css");
