@@ -27,8 +27,8 @@ class CssUrlsFilter extends \Nette\Object {
             return $url;
 
         $docroot = realpath(WWW_DIR);
-        $basePath = rtrim(Environment::getVariable("baseUri"), '/');
-
+        $basePath = rtrim(Environment::getHttpRequest()->getUrl()->getScriptPath(), '/');
+        
         // inside document root
         if (Strings::startsWith($cssFile, $docroot)) {
             $path = $basePath . substr(dirname($cssFile), strlen($docroot)) . DIRECTORY_SEPARATOR . $url;
