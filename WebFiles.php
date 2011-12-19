@@ -44,26 +44,29 @@ class WebFiles
 
 
     /**
-     * link files
+     * Links webfiles, returns true if any new file was added
      * @param mixed
-     * @return this
+     * @return boolean
      */
-    public function link() {
-	$args = \func_get_args();
-	foreach ($args as $arg) {
-	    if (\is_string($arg)) {
-		$arg = array($arg);
-	    }
-	    foreach ($arg as $name) {
-		if (!\key_exists($name, $this->files)) {
-		    throw new \LogicException("File '$name' unknown to WebFiles");
-		}
-		if (!\in_array($name, $this->linked)) {
-		    $this->linked[] = $name;
-		}
-	    }
-	}
-	return $this;
+    public function link()
+    {
+        $containedNew = false;
+        $args = \func_get_args();
+        foreach ($args as $arg) {
+            if (\is_string($arg)) {
+                $arg = array($arg);
+            }
+            foreach ($arg as $name) {
+                if (!\key_exists($name, $this->files)) {
+                    throw new \LogicException("File '$name' unknown to WebFiles");
+                }
+                if (!\in_array($name, $this->linked)) {
+                    $this->linked[] = $name;
+                    $containedNew = true;
+                }
+            }
+        }
+        return $containedNew;
     }
 
 /**
